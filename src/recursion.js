@@ -79,24 +79,25 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
-    //range =
-    // (x+1)into new array, then (x+2) into new array
+    //array with numbers between x and y
+    
+    //base case?
     
     var result = [];
     var next;
-
-    if (x === (y-1)) {
+    
+    if (x === (y-1)){
+        return result;
+    } else if (x === y){
         return result;
     }
     
     if (x < y){
-        next = x + 1;
+        next = x+1;
         result.push(next);
-    }
-    
-    if (x > y){
-        next = x - 1;
-        result.unshift(next);
+    } else if (x > y){
+        next = x-1;
+        result.push(next);
     }
     
     return result.concat(range(next, y));
@@ -107,7 +108,15 @@ var range = function(x, y) {
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
-var exponent = function(base, exp) {
+var exponent = function(base, exp) {    
+    if (exp === 0){
+        return 1;
+    } else if (exp > 0){
+        return base * exponent(base, --exp);
+    } else if (exp < 0){
+        exp *= -1; 
+        return base / exponent(base, ++exp);
+    }
 };
 
 // 8. Determine if a number is a power of two.
@@ -173,6 +182,7 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
+    
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
